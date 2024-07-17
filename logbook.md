@@ -1,8 +1,14 @@
 This is a logbook for the work done on the saxibot project.
 
-# 3: Driving your virtual robot!
+---
+# wednesday, 17 july 2024
 
-## (separate running) robot state publisher
+---
+# tuesday, 16 july 2024
+
+## video #3: *Driving your virtual robot!*
+
+### (separate running) robot state publisher
 to start the robot state publisher (rsp)
 `ros2 launch saxibot rsp.launch.py [use_sim_time:=true]`
 - `saxibot` is the package in which the launch file `rps.launch.py` is found
@@ -19,7 +25,7 @@ spawn the saxibot:
 `-entity saxibot` is the name of the object model
 
 
-## integrated launcher
+### integrated launcher
 make a launcher `sim_launcher.launch.py` which include rsp.launch.py **and** runs gazebo **and** 
 runs the spawner script in 1 go
 to include other launch file:
@@ -40,7 +46,7 @@ spawn_entity = Node(package='gazebo_ros',
                     output='screen')
 ```
 
-## moving it around
+### moving it around
 picture:
 ![alt text](image-1.png)
 
@@ -53,7 +59,7 @@ picture:
   - the topic */joint_states* subscribe to the control plugin
   - control plugin broadcasts a new frame *odom*, it is the world start position.
 
-### control plugin (libgazebo_ros_diff_drive.so)
+#### control plugin (libgazebo_ros_diff_drive.so)
 Now, a new **xacro** for for the gazebo plugin *libgazebo_ros_diff_drive.so* is made, which is the 
 plugin for the control of the differential drive wheels. It needs parameters to be able to calculate 
 the speed and rotation, so distances and diameters.
@@ -61,7 +67,7 @@ the speed and rotation, so distances and diameters.
 In addition, the **odometry** will be calculated and published to a frame (called *odom* here, but 
 this might be anything) and the TF and wheel TF will be updated as well.
 
-## tele-operation via keyboard
+### tele-operation via keyboard
 Now, the set the **tele-operation** or *teleop* via the keyboard run:
 `ros2 run teleop_twist_keyboard teleop_twist_keyboard`
 
@@ -70,12 +76,10 @@ control plugin *libgazebo_ros_diff_drive.so*
 
 Otherwise the topic /cmd_vel is dead!
 
-tip: 
-1. use `ros2 topic list` to get the full topics available
-2. use `ros2 topic echo <topic>` to show the messages being published
-3. to use a configuration in rviz: `rviz2 -d src/saxibot/config/xxxx.rviz`
-4. to use a world in gazebo: `ros2 launch saxibot <launchfile> world:=src/saxibot/worlds/xxxx.world`
-   1. note that the saxibot itself should be removed since it will spawn via the same launch script!
-5. 
-
+> **tips**: 
+> 1. use `ros2 topic list` to get the full topics available
+> 2. use `ros2 topic echo <topic>` to show the messages being published
+> 3. to use a configuration in rviz: `rviz2 -d src/saxibot/config/xxxx.rviz`
+> 4. to use a world in gazebo: `ros2 launch saxibot <launchfile> world:=src/saxibot/worlds/xxxx.world`
+>   1. note that the saxibot itself should be removed since it will spawn via the same launch script!
 

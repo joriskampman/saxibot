@@ -1,3 +1,9 @@
+""" 
+Launch script for the robot state publisher feeding it the robot.urdf.xacro and setting
+use_sim_time to true
+
+Author: Joris Kampman, Saxion SMART, july 2024
+"""
 import os
 
 from ament_index_python.packages import get_package_share_directory
@@ -11,7 +17,11 @@ import xacro
 
 
 def generate_launch_description():
+    """ 
+    generates a LaunchDescription object for the robot state publisher
 
+    author: Joris Kampman, Saxion SMART, july 2024
+    """
     # Check if we're told to use sim time
     use_sim_time = LaunchConfiguration('use_sim_time')
 
@@ -19,7 +29,7 @@ def generate_launch_description():
     pkg_path = os.path.join(get_package_share_directory('saxibot'))
     xacro_file = os.path.join(pkg_path,'description','robot.urdf.xacro')
     robot_description_config = xacro.process_file(xacro_file)
-    
+
     # Create a robot_state_publisher node
     params = {'robot_description': robot_description_config.toxml(), 'use_sim_time': use_sim_time}
     node_robot_state_publisher = Node(
