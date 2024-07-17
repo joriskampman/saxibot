@@ -1,10 +1,11 @@
 This is a logbook for the work done on the saxibot project.
 
 ---
-# wednesday, 17 july 2024
+> # wednesday, 17 july 2024
+Made some small tweaks to the launchers in python and committed it
 
 ---
-# tuesday, 16 july 2024
+> # tuesday, 16 july 2024
 
 ## video #3: *Driving your virtual robot!*
 
