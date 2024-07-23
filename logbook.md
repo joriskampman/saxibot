@@ -1,11 +1,39 @@
 This is a logbook for the work done on the saxibot project.
 
----
-> # wednesday, 17 july 2024
+> ## monday, 21 july 2024
+Some reading and ordering parts by myself outside of SMART:
+parts ordered:
+ - **electronicavoorjou\.nl** (€25.73, incl.)
+   - Buck converter XL4016E1 (€7.95)
+   - USB naar UART TTL kabel - PL2303HZ (€4.95)
+   - male 2.1'' (5.5mm) DC power jack adapter connector plug (€1.95)
+   - HDMI to uHDMI adapter (€5.95)
+ - **electronicavoorjou\.nl (deel 2)** (€12.94, incl.)
+   - Stroom en spanningsmeter 100V 50A (€8.95)
+ - **vanallesenmeer\.nl** (€13.80, incl.)
+   - (4 kleuren, rgby) Schakelaar aan/uit rond verlicht 12V 20A (4x€1.75)
+   - zekeringhouder 5x20mm inbouw (€0.85)
+   - automatische zekeringen 15A MR1 (€2.15)
+   - zekeringhouder in-line 5x20 glaszekering (€0.85)
+
+This components are all part of the power distribution chain.
+
+With help from Gerjen I have been looking for a **power supply** and found a **Tattu LiPo** battery which is used by **spooter** acccording to the label on it. Since it was completely drained Gerjen and Mark showed me how to recharge it.
+
+## recharging lipo
+### very empty
+inn this case the lipo 3S was very empty. As known is that one of the benefits of a LiPo battery is that the output voltage remains relatively constant before dropping off steeply. If this depletion goes to far, the lipo might become permanently damaged. However, a good try is to:
+1. charge with a very low current (i.e., 0.1*C)
+   1. the mode is ....(ask mark)
+2. when the voltage is about 9 V - or something - the normal charging may be assumed. That is about 1C
+
+
+
+
+> ## wednesday, 17 july 2024
 Made some small tweaks to the launchers in python and committed it
 
----
-> # tuesday, 16 july 2024
+> ## tuesday, 16 july 2024
 
 ## video #3: *Driving your virtual robot!*
 
@@ -38,7 +66,7 @@ rsp = IncludeLaunchDescription(PythonLaunchDescriptionSource([incfile]),
                                launch_arguments={'use_sim_time': 'true'}.items())
 ```
 
-to run the spawner (which is **not** a launcher:
+to run the spawner which is **not** a launcher:
 ```
 spawn_entity = Node(package='gazebo_ros',
                     executable='spawn_entity.py',
