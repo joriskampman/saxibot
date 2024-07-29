@@ -4,17 +4,20 @@
     <!-- gazebo configuration -->
   <gazebo>
     <!-- note: name doesn't matter -->
-    <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+    <plugin
+      filename="libignition-gazebo-diff-drive-system.so"
+      name="ignition::gazebo::systems::DiffDrive">
       <!-- all tags are required by the plugin. These can be looked up online -->
+
       <!-- WHEEL INFORMATION -->
       <left_joint>left_wheel_joint</left_joint>
       <right_joint>right_wheel_joint</right_joint>
       <wheel_separation>0.35</wheel_separation>
-      <wheel_diameter>0.1</wheel_diameter>
+      <wheel_radius>0.05</wheel_radius>
 
       <!-- LIMITS -->
-      <max_wheel_torque>200</max_wheel_torque>
-      <max_wheel_acceleration>10.0</max_wheel_acceleration>
+      <!-- <max_wheel_torque>200</max_wheel_torque>
+      <max_wheel_acceleration>10.0</max_wheel_acceleration> -->
 
       <!-- OUTPUT -->
       <odometry_frame>odom</odometry_frame>
@@ -23,6 +26,14 @@
       <publish_odom>true</publish_odom>
       <publish_odom_tf>true</publish_odom_tf>
       <publish_wheel_tf>true</publish_wheel_tf>
+
+      <topic>cmd_vel</topic>
+      
+    </plugin>
+
+    <plugin
+      filename="libignition-gazebo-triggered-publisher-system.so"
+      name="ignition::gazebo::systems::TriggeredPublisher">
       
     </plugin>
   </gazebo>

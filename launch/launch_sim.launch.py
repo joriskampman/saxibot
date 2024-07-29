@@ -24,17 +24,21 @@ def generate_launch_description():
   # Force sim time to be enabled
   package_name='saxibot'
 
-  rsp = IncludeLaunchDescription(
-              PythonLaunchDescriptionSource([os.path.join(
-                  get_package_share_directory(package_name),'launch','rsp.launch.py'
-              )]), launch_arguments={'use_sim_time': 'true'}.items()
-  )
+  # launcher for ROBOT STATE PUBLISHER
+  # note 'use_sim_time' is true (todo: parameterize)
+  rsp_launch_file = os.path.join(get_package_share_directory(package_name),
+                                 'launch',
+                                 'rsp.launch.py')
+  rsp = IncludeLaunchDescription(PythonLaunchDescriptionSource([rsp_launch_file]),
+                                 launch_arguments={'use_sim_time': 'true'}.items())
 
   # Include the Gazebo launch file, provided by the gazebo_ros package
-  gazebo = IncludeLaunchDescription(
-              PythonLaunchDescriptionSource([os.path.join(
-                  get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')]),
-           )
+  gz_launch_file = os.path.join(get_package_share_directory('ros_gz_sim'),
+                                'launch',
+                                'gz_sim.launch.py')
+  gazebo = IncludeLaunchDescription(PythonLaunchDescriptionSource([gz_launch_file]),
+                                    launch_arguments=[('gz_args',
+                                                       ' ./src/saxibot/worlds/world_demo_dl.sdf')])
 
   # Run the spawner node from the gazebo_ros package.
   # The entity name doesn't really matter if you only have a single robot.
@@ -43,9 +47,8 @@ def generate_launch_description():
                                  '-entity', 'saxibot'],
                       output='screen')
 
-
-
   # Launch them all!
   return LaunchDescription([rsp,
                             gazebo,
-                            spawn_entity])
+                            spawn_entity,
+                            ])
