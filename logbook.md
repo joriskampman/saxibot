@@ -1,4 +1,15 @@
 This is a logbook for the work done on the saxibot project.
+> ## wednesday, 23 july
+
+- watched video #12/22 titled: *Solving the problem EVERY robot has (with ros2_control)*
+- changed my code accordingly and tested that the gazebo is still working
+
+
+> ## tuesday, 22 july 2024
+Added the modeling via ROS2/Gazebo (humble) to the confluence page
+Got confirmation that the parts I ordered are approved by Abeje, only regarding the motors: 1 is in stock, the other will arrive in september.. nothing to do about that!
+
+[See this link](https://mechatronica.atlassian.net/wiki/spaces/SaxiBot/pages/3294527497/ROS2+and+Gazebo) for the Confluence subpage on ROS2 and Gazebo for the **humble** ros2 version, and the classis gazebo (version 11)
 
 > ## monday, 21 july 2024
 Some reading and ordering parts by myself outside of SMART:
@@ -18,7 +29,7 @@ parts ordered:
 
 This components are all part of the power distribution chain.
 
-With help from Gerjen I have been looking for a **power supply** and found a **Tattu LiPo** battery which is used by **spooter** acccording to the label on it. Since it was completely drained Gerjen and Mark showed me how to recharge it.
+With help from Gerjen I have been looking for a **power supply** and found a **Tattu LiPo** battery which is used by **spotter** acccording to the label on it. Since it was completely drained Gerjen and Mark showed me how to recharge it.
 
 ## recharging lipo
 ### very empty
