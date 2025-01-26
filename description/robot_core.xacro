@@ -31,30 +31,18 @@
     
     <!-- SAXIBOT PROPERTIES -->
     <!-- wheels -->
-<<<<<<< HEAD
-    <xacro:property name="d_whl" value="0.144"/>
-=======
     <xacro:property name="d_whl" value="0.142"/>
->>>>>>> 8dfc5c0d7a9da5742bd655b1c45715c0cc800bc5
     <xacro:property name="r_whl" value="${d_whl/2}"/>
     <xacro:property name="l_whl" value="0.04"/>
     <xacro:property name="m_whl" value="0.25"/>
 
     <!-- chassis -->
     <xacro:property name="l_chs" value="0.4"/>  <!-- length is the depth (x) -->
-<<<<<<< HEAD
-    <xacro:property name="w_chs" value="0.4"/>  <!-- width is the front-face width (y)-->
-    <xacro:property name="h_chs" value="0.2"/>  <!-- height is the height (z) -->
-    <xacro:property name="dx_whl" value="${l_chs/3}"/>  <!-- offset of wheels wrt center box -->
-    <xacro:property name="dz_whl" value="${h_chs/2}"/>  <!-- offset of wheels wrt center box -->
-    <xacro:property name="dy_whl" value="${l_whl/2 + w_chs/2 + 0.003}"/> <!-- 3 mm buffer-->
-=======
     <xacro:property name="w_chs" value="0.3"/>  <!-- width is the front-face width (y)-->
     <xacro:property name="h_chs" value="0.15"/>  <!-- height is the height (z) -->
     <xacro:property name="dx_whl" value="${l_chs/3}"/>  <!-- offset of wheels wrt center box -->
     <xacro:property name="dz_whl" value="${h_chs/2}"/>  <!-- offset of wheels wrt center box -->
     <xacro:property name="dy_whl" value="${l_whl/2 + w_chs/2 + 0.004}"/> <!-- 3 mm buffer-->
->>>>>>> 8dfc5c0d7a9da5742bd655b1c45715c0cc800bc5
     <xacro:property name="xyz_chs" value="${l_chs} ${w_chs} ${h_chs}"/>
     <xacro:property name="m_chs" value="3.0"/>  <!-- estimated weight (uniform for now) -->
 

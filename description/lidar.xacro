@@ -3,32 +3,21 @@
 
   <!-- properties -->
   <xacro:property name="wl_ldr_base" value="0.0556"/>
-<<<<<<< HEAD
-=======
   <xacro:property name="h_offset" value="0.103"/>
   <xacro:property name="l_offset" value="-0.07"/>
->>>>>>> 8dfc5c0d7a9da5742bd655b1c45715c0cc800bc5
   <xacro:property name="h_ldr_base" value="0.0231"/>
   <xacro:property name="r_ldr_top" value="${wl_ldr_base/2 - 0.001}"/>
   <xacro:property name="h_ldr_top" value="0.0182"/>
   <xacro:property name="m_ldr_base" value="0.1"/>
   <xacro:property name="m_ldr_top" value="0.1"/>
   <xacro:property name="h_ldr_trans" value="0.0298"/>
-<<<<<<< HEAD
-  <xacro:property name="material" value="blue"/>
-=======
   <xacro:property name="color" value="blue"/>
->>>>>>> 8dfc5c0d7a9da5742bd655b1c45715c0cc800bc5
 
   <!-- joints and links -->
   <joint name="laser_base_joint" type="fixed">
     <parent link="chassis"/>
     <child link="laser_base_link"/>
-<<<<<<< HEAD
-    <origin xyz="${l_chs/3} 0 ${h_chs/2}" rpy="0 0 0"/>
-=======
     <origin xyz="${l_offset} 0 ${h_chs/2 + h_offset}" rpy="0 0 0"/>
->>>>>>> 8dfc5c0d7a9da5742bd655b1c45715c0cc800bc5
   </joint>
   
   <!-- radar base is the box -->
@@ -38,11 +27,7 @@
       <geometry>
         <box size="${wl_ldr_base} ${wl_ldr_base} ${h_ldr_base}"/>
       </geometry>
-<<<<<<< HEAD
-      <material name="${material}"/>
-=======
       <material name="${color}"/>
->>>>>>> 8dfc5c0d7a9da5742bd655b1c45715c0cc800bc5
     </visual>
     <collision>
       <origin xyz="0.0 0.0 ${h_ldr_base/2}"/>  <!-- because joint is offset from base-link-->
@@ -69,11 +54,7 @@
       <geometry>
         <cylinder radius="${r_ldr_top}" length="${h_ldr_top}"/>
       </geometry>
-<<<<<<< HEAD
-      <material name="black"/>
-=======
       <material name="${color}"/>
->>>>>>> 8dfc5c0d7a9da5742bd655b1c45715c0cc800bc5
     </visual>
     
     <collision>
@@ -87,11 +68,7 @@
   <joint name="laser_transducer_joint" type="fixed">
     <parent link="laser_base_link"/>
     <child link="laser_transducer_frame"/>
-<<<<<<< HEAD
-    <origin xyz="0.0 0.0 ${h_ldr_trans}" rpy="0 0.0 ${pi/2}"/>
-=======
     <origin xyz="0.0 0.0 ${h_ldr_trans}" rpy="0 0 3.1416"/>  <!-- 180 degrees because lidar is oriented wrong -->
->>>>>>> 8dfc5c0d7a9da5742bd655b1c45715c0cc800bc5
   </joint>
 
   <link name="laser_transducer_frame">
@@ -99,40 +76,4 @@
 
 
 
-<<<<<<< HEAD
-  <!-- ================================================== -->
-  <!-- ============  GAZEBO STUFF  ====================== -->
-  <!-- ================================================== -->
-  <gazebo reference="laser_transducer_frame">
-    <sensor name="lidar_c3" type="ray">
-      <pose>0 0 0 0 0 0</pose>
-      <visualize>true</visualize>
-      <update_rate>10</update_rate>
-      <ray>
-        <scan>
-          <horizontal>
-            <samples>360</samples>
-            <resolution>1</resolution>
-            <min_angle>-3.14</min_angle>
-            <max_angle>3.14</max_angle>
-          </horizontal>
-        </scan>
-        <range>
-          <min>0.05</min>
-          <max>12.0</max>
-          <resolution>0.015</resolution>
-        </range>
-      </ray>
-      <plugin name="lidar_controller" filename="libgazebo_ros_ray_sensor.so">
-        <ros>
-          <argument>~/out:=scan</argument>
-        </ros>
-        <output_type>sensor_msgs/LaserScan</output_type>
-        <frame_name>laser_transducer_frame</frame_name>
-      </plugin>
-    </sensor>
-  </gazebo>
-
-=======
->>>>>>> 8dfc5c0d7a9da5742bd655b1c45715c0cc800bc5
 </robot>
