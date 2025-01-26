@@ -20,8 +20,8 @@ teleop_node:
     scale_angular_turbo:
       yaw: 3.14  # see my_controllers.yaml
     
-    require_enable_button: false
-    # enable_button: 6  # top left
-    # enable_turbo_button: 8  # bottom left
-    enable_button: 7  # top right
-    enable_turbo_button: 9  # bottom right
+    require_enable_button: true
+    enable_button: 6  # top left
+    enable_turbo_button: 8  # bottom left
+    # enable_button: 7  # top right
+    # enable_turbo_button: 9  # bottom right

@@ -31,7 +31,7 @@ diff_cont:
         has_velocity_limits: true
         max_velocity: 1.0  # based on 120 rpm plus wheel diameter of 14.2 cm
         has_acceleration_limits: true
-        max_acceleration: 0.25  # spec says 1, but I'll stay safe
+        max_acceleration: 0.5  # spec says 1, but I'll stay safe
 
     angular:
       z:

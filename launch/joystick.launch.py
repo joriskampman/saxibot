@@ -10,9 +10,9 @@ def generate_launch_description():
                             'config',
                             'joystick.yaml')
 
-  # joy_node = Node(package='joy',
-  #                 executable='joy_node',
-  #                 parameters=[joy_params])
+  joy_node = Node(package='joy',
+                  executable='joy_node',
+                  parameters=[joy_params])
 
   teleop_node = Node(package='teleop_twist_joy',
                      executable='teleop_node',
@@ -21,6 +21,6 @@ def generate_launch_description():
                      remappings=[('/cmd_vel', '/diff_cont/cmd_vel_unstamped')])
 
   return LaunchDescription([
-    # joy_node,
+    joy_node,
     teleop_node,
   ])
