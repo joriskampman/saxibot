@@ -1,7 +1,11 @@
 controller_manager:
   ros__parameters:
     update_rate: 30
+<<<<<<< HEAD
     use_sim_time: true
+=======
+    # use_sim_time: true
+>>>>>>> 8dfc5c0d7a9da5742bd655b1c45715c0cc800bc5
 
     # set up the actual controllers. first name, then the type
     diff_cont:  # user chosen name
@@ -21,6 +25,7 @@ diff_cont:
 
     left_wheel_names: ['left_wheel_joint']
     right_wheel_names: ['right_wheel_joint']
+<<<<<<< HEAD
     wheel_separation: 0.402
     wheel_radius: 0.0722
 
@@ -62,6 +67,26 @@ diff_cont:
     angular.z.min_acceleration: 0.0
     angular.z.max_jerk: 0.0
     angular.z.min_jerk: 0.0
+=======
+    wheel_separation: 0.338
+    wheel_radius: 0.071
+
+    use_stamped_vel: false
+
+    linear:
+      x:
+        has_velocity_limits: true
+        max_velocity: 1.0  # based on 120 rpm plus wheel diameter of 14.2 cm
+        has_acceleration_limits: true
+        max_acceleration: 0.25  # spec says 1, but I'll stay safe
+
+    angular:
+      z:
+        has_velocity_limits: true
+        max_velocity: 5.3  # based on maximum linear velocity, wheel diameter and wheel offset
+        has_acceleration_limits: true
+        max_acceleration: 3.14  # sI had to guess those
+>>>>>>> 8dfc5c0d7a9da5742bd655b1c45715c0cc800bc5
 
 # joint_broad:
 #     ros__parameters:

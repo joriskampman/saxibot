@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+  <!-- properties -->
+  <xacro:property name="l_cam_base" value="0.025"/>
+  <xacro:property name="w_cam_base" value="0.035"/>
+  <xacro:property name="h_cam_base" value="0.012"/>
+  <xacro:property name="l_offset" value="0.06"/>
+  <xacro:property name="h_offset" value="0.03"/>
+  <xacro:property name="tilt_deg" value="-10.0"/>  <!-- amount kof tilting backwards, looking up-->
+  <xacro:property name="r_cam_lens" value="0.0075"/>
+  <xacro:property name="h_cam_lens" value="0.003"/>
+  <xacro:property name="m_cam_base" value="0.01"/>
+  <xacro:property name="m_cam_top" value="0.005"/>
+  <xacro:property name="h_cam_optical" value="0.0298"/>
+  <xacro:property name="color" value="red"/>
+
+  <!-- joints and links -->
+  <joint name="camera_base_joint" type="fixed">
+    <parent link="chassis"/>
+    <child link="camera_base_link"/>
+    <origin xyz="${l_offset} 0 ${h_chs/2 + h_offset}" rpy="0 ${pi/2 + tilt_deg*pi/180} 0"/>
+  </joint>
+  
+  <!-- radar base is the box -->
+  <link name="camera_base_link">
+    <visual>
+      <origin xyz="0.0 0.0 ${h_cam_base/2}"/>  <!-- because joint is offset from base-link-->
+      <geometry>
+        <box size="${l_cam_base} ${w_cam_base} ${h_cam_base}"/>
+      </geometry>
+      <material name="${color}"/>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 ${h_cam_base/2}"/>  <!-- because joint is offset from base-link-->
+      <geometry>
+        <box size="${l_cam_base} ${w_cam_base} ${h_cam_base}"/>
+      </geometry>
+    </collision>
+    <xacro:inertial_box mass="${m_cam_base}" x="${l_cam_base}" y="${w_cam_base}" z="${h_cam_base}">
+      <!-- cog in center of box -->
+      <origin xyz="0.0 0.0 ${h_cam_base/2}" rpy="${tilt_deg*pi/180} 0 0"/>  <!-- because joint is offset from base-link-->
+    </xacro:inertial_box>
+  </link>
+
+  <joint name="camera_lens_joint" type="fixed">
+    <parent link="camera_base_link"/>
+    <child link="camera_lens_link"/>
+    <origin xyz="0.0 0.0 ${h_cam_base}" rpy="0 0 0"/>
+  </joint>
+  
+  <!-- radar top is a cylinkder -->
+  <link name="camera_lens_link">
+    <visual>
+      <origin xyz="0 0 ${h_cam_lens/2}"/>
+      <geometry>
+        <cylinder radius="${r_cam_lens}" length="${h_cam_lens}"/>
+      </geometry>
+      <material name="${color}"/>
+    </visual>
+    
+    <collision>
+      <geometry>
+        <cylinder radius="${r_cam_lens}" length="${h_cam_lens}"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- the actual camera image frame -->
+  <joint name="camera_link_optical_joint" type="fixed">
+    <parent link="camera_lens_link"/>
+    <child link="camera_link_optical"/>
+    <origin xyz="0.0 0.0 ${h_cam_optical}" rpy="0 0 0"/>  <!-- small offset same direction-->
+  </joint>
+
+  <link name="camera_link_optical">
+  </link>
+
+
+
+</robot>
