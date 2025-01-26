@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <!-- gazebo configuration -->
+  <!-- gazebo configuration -->
   <gazebo>
     <!-- note: name doesn't matter -->
     <plugin
@@ -12,8 +12,8 @@
       <!-- WHEEL INFORMATION -->
       <left_joint>left_wheel_joint</left_joint>
       <right_joint>right_wheel_joint</right_joint>
-      <wheel_separation>0.35</wheel_separation>
-      <wheel_radius>0.05</wheel_radius>
+      <wheel_separation>0.4</wheel_separation>
+      <wheel_radius>0.072</wheel_radius>
 
       <!-- LIMITS -->
       <!-- <max_wheel_torque>200</max_wheel_torque>
@@ -31,10 +31,10 @@
       
     </plugin>
 
-    <plugin
+    <!-- <plugin
       filename="libignition-gazebo-triggered-publisher-system.so"
       name="ignition::gazebo::systems::TriggeredPublisher">
       
-    </plugin>
+    </plugin> -->
   </gazebo>
 </robot>

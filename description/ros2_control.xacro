@@ -6,34 +6,31 @@
 
     <!-- HARDWARE INTERFACE for CM -->
     <hardware>
-      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
     </hardware>
 
     <!-- joints -->
 
     <!-- LEFT WHEEL -->
     <joint name="left_wheel_joint">
-
       <!-- command interface on velocity -->
-      <commmand_interface name="velocity">
+      <command_interface name="velocity">
         <param name="min">-10</param>
         <param name="max">10</param>
-      </commmand_interface>
-
+      </command_interface>
       <!-- state interfaces (vel, pos) -->
       <state_interface name="velocity"></state_interface>
       <state_interface name="position"></state_interface>
     </joint>
 
+
     <!-- RIGHT WHEEL -->
     <joint name="right_wheel_joint">
-
       <!-- command interface on velocity -->
-      <commmand_interface name="velocity">
+      <command_interface name="velocity">
         <param name="min">-10</param>
         <param name="max">10</param>
-      </commmand_interface>
-
+      </command_interface>
       <!-- state interfaces (vel, pos) -->
       <state_interface name="velocity"></state_interface>
       <state_interface name="position"></state_interface>
@@ -43,7 +40,8 @@
   <!-- GAZEBO plugin for gazebo to tell hem to use ros2_control -->
   <gazebo>
     <!-- note name doesnt matter -->
-    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+    <plugin name="gz_ros2_control::GazeboSimROS2ControlPlugin" 
+            filename="libgz_ros2_control-system.so">
       <parameters>$(find saxibot)/config/my_controllers.yaml</parameters>
     </plugin>
   </gazebo>

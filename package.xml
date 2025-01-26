@@ -3,9 +3,14 @@
 <package format="3">
   <name>saxibot</name>
   <version>0.0.0</version>
-  <description>Saxibot - based on articulate robots by Josh Newans</description>
-  <maintainer email="joriskampman@gmail.com">Joris Kampman</maintainer>
   <license>TODO: License declaration</license>
+
+  <description>
+    Saxibot - based on articulate robots by Josh Newans
+  </description>
+  <url type="repository">https://github.com/joriskampman/saxibot</url>
+  <author email="joriskampman@gmail.com">Joris Kampman</author>
+  <maintainer email="joriskampman@gmail.com">Joris Kampman</maintainer>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
@@ -13,6 +18,12 @@
   <test_depend>ament_lint_common</test_depend>
 
   <exec_depend>ros2launch</exec_depend>
+
+  <depend>ros_gz_bridge</depend>
+  <depend>ros_gz_sim</depend>
+  <depend>ros_gz_image</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf2</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
