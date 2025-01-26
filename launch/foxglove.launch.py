@@ -26,6 +26,13 @@ def generate_launch_description():
   package_name='saxibot'
   # Force sim time to be enabled
 
+  robot_launch_file = os.path.join(get_package_share_directory(package_name),
+                                   'launch',
+                                   'robot.launch.py')
+  robot = IncludeLaunchDescription(PythonLaunchDescriptionSource([robot_launch_file]),
+                                   launch_arguments={'use_sim_time': 'false'}.items())
+  
+
   # launcher for ROBOT STATE PUBLISHER
   # note 'use_sim_time' is true (todo: parameterize)
   rsp_launch_file = os.path.join(get_package_share_directory(package_name),
