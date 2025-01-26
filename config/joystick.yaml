@@ -1,0 +1,25 @@
+joy_node:
+  ros__parameters:
+    device_id: 0
+    deadzone: 0.05
+    autorepeat_rate: 20.0
+
+teleop_node:
+  ros__parameters:
+    axis_linear:
+      x: 1  # left joypad, up <--> down
+    scale_linear:
+      x: 0.45  # is this in meters per second??
+    scale_linear_turbo:
+      x: 0.89  # max was about 2.1 revs per second
+
+    axis_angular:
+      yaw: 0  # left joypad, left <--> right
+    scale_angular:
+      yaw: 1.5  # see my_controllers.yaml
+    scale_angular_turbo:
+      yaw: 3.14  # see my_controllers.yaml
+    
+    require_enable_button: false
+    enable_button: 7  # top right
+    enable_turbo_button: 9  # bottom right

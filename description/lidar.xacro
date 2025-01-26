@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+  <!-- properties -->
+  <xacro:property name="wl_ldr_base" value="0.0556"/>
+  <xacro:property name="h_offset" value="0.103"/>
+  <xacro:property name="l_offset" value="-0.07"/>
+  <xacro:property name="h_ldr_base" value="0.0231"/>
+  <xacro:property name="r_ldr_top" value="${wl_ldr_base/2 - 0.001}"/>
+  <xacro:property name="h_ldr_top" value="0.0182"/>
+  <xacro:property name="m_ldr_base" value="0.1"/>
+  <xacro:property name="m_ldr_top" value="0.1"/>
+  <xacro:property name="h_ldr_trans" value="0.0298"/>
+  <xacro:property name="color" value="blue"/>
+
+  <!-- joints and links -->
+  <joint name="laser_base_joint" type="fixed">
+    <parent link="chassis"/>
+    <child link="laser_base_link"/>
+    <origin xyz="${l_offset} 0 ${h_chs/2 + h_offset}" rpy="0 0 0"/>
+  </joint>
+  
+  <!-- radar base is the box -->
+  <link name="laser_base_link">
+    <visual>
+      <origin xyz="0.0 0.0 ${h_ldr_base/2}"/>  <!-- because joint is offset from base-link-->
+      <geometry>
+        <box size="${wl_ldr_base} ${wl_ldr_base} ${h_ldr_base}"/>
+      </geometry>
+      <material name="${color}"/>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 ${h_ldr_base/2}"/>  <!-- because joint is offset from base-link-->
+      <geometry>
+        <box size="${wl_ldr_base} ${wl_ldr_base} ${h_ldr_base}"/>
+      </geometry>
+    </collision>
+    <xacro:inertial_box mass="${m_ldr_base}" x="${wl_ldr_base}" y="${wl_ldr_base}" z="${h_ldr_base}">
+      <!-- cog in center of box -->
+      <origin xyz="0.0 0.0 ${h_ldr_base/2}" rpy="0 0 0"/>  <!-- because joint is offset from base-link-->
+    </xacro:inertial_box>
+  </link>
+
+  <joint name="laser_top_joint" type="fixed">
+    <parent link="laser_base_link"/>
+    <child link="laser_top_link"/>
+    <origin xyz="0.0 0.0 ${h_ldr_base}" rpy="0 0 0"/>
+  </joint>
+  
+  <!-- radar top is a cylinkder -->
+  <link name="laser_top_link">
+    <visual>
+      <origin xyz="0 0 ${h_ldr_top/2}"/>
+      <geometry>
+        <cylinder radius="${r_ldr_top}" length="${h_ldr_top}"/>
+      </geometry>
+      <material name="${color}"/>
+    </visual>
+    
+    <collision>
+      <geometry>
+        <cylinder radius="${r_ldr_top}" length="${h_ldr_top}"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- the actual lidar frame -->
+  <joint name="laser_transducer_joint" type="fixed">
+    <parent link="laser_base_link"/>
+    <child link="laser_transducer_frame"/>
+    <origin xyz="0.0 0.0 ${h_ldr_trans}" rpy="0 0 3.1416"/>  <!-- 180 degrees because lidar is oriented wrong -->
+  </joint>
+
+  <link name="laser_transducer_frame">
+  </link>
+
+
+
+</robot>

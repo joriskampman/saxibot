@@ -1,7 +1,7 @@
 controller_manager:
   ros__parameters:
-    update_rate: 30.0
-    use_sim_time: true
+    update_rate: 30
+    # use_sim_time: true
 
     # set up the actual controllers. first name, then the type
     diff_cont:  # user chosen name
@@ -21,10 +21,24 @@ diff_cont:
 
     left_wheel_names: ['left_wheel_joint']
     right_wheel_names: ['right_wheel_joint']
-    wheel_separation: 0.35
-    wheel_radius: 0.05
+    wheel_separation: 0.338
+    wheel_radius: 0.071
 
     use_stamped_vel: false
+
+    linear:
+      x:
+        has_velocity_limits: true
+        max_velocity: 1.0  # based on 120 rpm plus wheel diameter of 14.2 cm
+        has_acceleration_limits: true
+        max_acceleration: 0.25  # spec says 1, but I'll stay safe
+
+    angular:
+      z:
+        has_velocity_limits: true
+        max_velocity: 5.3  # based on maximum linear velocity, wheel diameter and wheel offset
+        has_acceleration_limits: true
+        max_acceleration: 3.14  # sI had to guess those
 
 # joint_broad:
 #     ros__parameters:
